@@ -1,6 +1,6 @@
 const CreateObject = require("../assignments/create_object/create_object");
 
-describe('create_object', () => {
+describe.only;('create_object', () => {
     test('Employee Object', () => {
         expect(CreateObject(["name", "Yash", "id", "23442", "email", "jon.doe@gmail.com"])).toEqual({ name: "Yash", id: "23442", email: "jon.doe@gmail.com"});
     });
