@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <style>
+        html {
+            background-color: rgb(197, 236, 230);
+        }
+
+        .container {
+            display: block;
+        }
+
+        button {
+            background-color: rgb(8, 199, 247);
+            margin:20px;
+            font-style: italic;
+            padding: 15px;
+            border-radius: 20px;
+            font-size: medium;
+            width: 150px;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="completed">completed</button>
+        <button id="pending">Pending</button>
+
+<div class="row"></div>
+        <div class="forComp"><h3>Completed List :</h3></div>
+        <div class="forPend"><h3>Pending List :</h3></div>
+    </div>
+    </div>
+    <script>
+        let comp = document.querySelector("#completed");
+        let Pend = document.querySelector("#pending");
+        let forCompDiv = document.querySelector(".forComp");
+        let forPendDiv = document.querySelector(".forPend");
+
+        fetch('https://jsonplaceholder.typicode.com/todos').then(function (data) {
+            console.log(data)
+            return data.json()
+        }).then(function (data) {
+
+            Pend.addEventListener('click', function () {
+                for (var i = 0; i < data.length/20; i++) {
+                    var elem = data[i];
+                    if (elem.completed === false) {
+                        let para = document.createElement('p')
+                        let text = elem.title;
+                        para.innerHTML = text;
+                        forPendDiv.appendChild(para);
+                    }
+                }
+            })
+            comp.addEventListener("click", function () {
+                for (var i = 0; i < data.length/10; i++) {
+                    var elem = data[i];
+
+                    if (elem.completed === true) {
+                        let para = document.createElement('p')
+                        let text = elem.title;
+                        para.innerHTML = text;
+                        forCompDiv.appendChild(para);
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
